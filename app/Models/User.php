@@ -32,4 +32,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password'
     ];
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, "user_id", "id");
+    }
 }

@@ -8,22 +8,26 @@ class IndexController extends Controller
 {
     public function index()
     {
-        $users = [
-            [
-                "id" => 1,
-                "username" => "avavion"
-            ],
-            [
-                "id" => 2,
-                "username" => "vazgen"
-            ]
-        ];
+        return view('home');
+    }
 
-        $user = [
-            "id" => 1,
-            "username" => "Алан"
-        ];
+    public function about()
+    {
+        return view('about');
+    }
 
-        return view('index', compact('user', 'users'));
+    public function contact()
+    {
+        return view('contact');
+    }
+
+    public function blog()
+    {
+        return view('blog');
+    }
+
+    public function post()
+    {
+        return view('post');
     }
 }
