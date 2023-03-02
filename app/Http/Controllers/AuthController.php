@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SignInRequest;
+use App\Http\Requests\SignUpRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -12,44 +14,22 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    public function signup(Request $request)
+    public function signup(SignUpRequest $request)
     {
-        $validator = Validator::make($request->all(), [
-            'username' => 'required|min:4|unique:users,username',
-            'email' => 'required|email|unique:users,email',
-            'password' => ['required', 'min:6', 'same:re_password'],
-            'policy' => 'accepted'
-        ]);
+        $validated = $request->validated();
 
-        if ($validator->fails()) {
-            return back()
-                ->withErrors($validator->errors())
-                ->withInput($request->all());
-        }
+        $validated['password'] = Hash::make($request['password']);
 
-        $user = User::query()->create([
-            'password' => Hash::make($request['password'])
-        ] + $validator->validated());
+        $user = User::query()->create($validated);
 
         Auth::login($user);
 
         return redirect()->route('home');
     }
 
-    public function signin(Request $request)
+    public function signin(SignInRequest $request)
     {
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|email',
-            'password' => 'required|min:6'
-        ]);
-
-        if ($validator->fails()) {
-            return back()
-                ->withErrors($validator->errors())
-                ->withInput($request->all());
-        }
-
-        if (!Auth::attempt($validator->validated())) {
+        if (!Auth::attempt($request->validated())) {
             return back()
                 ->withErrors(['invalid' => 'Invalid credentials'])
                 ->withInput($request->all());

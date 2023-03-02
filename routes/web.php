@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\IndexController;
 use Illuminate\Support\Facades\Route;
@@ -23,4 +24,9 @@ Route::controller(AuthController::class)->group(function () {
 
     // Выход из профиля (logout)
     Route::get('/logout', 'logout')->name('logout');
+});
+
+Route::controller(ArticleController::class)->prefix('/articles')->group(function () {
+    Route::get('/', 'getArticles')->name('article.all');
+    Route::get('/{article:slug}', 'show')->name('article.show');
 });

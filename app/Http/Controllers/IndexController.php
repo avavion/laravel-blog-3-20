@@ -2,13 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
 {
     public function index()
     {
-        return view('home');
+        $articles = Article::query()
+            ->where('is_published', '=', true)
+            ->orderByDesc('created_at')
+            ->limit(3)
+            ->get();
+
+        return view('home', compact('articles'));
     }
 
     public function about()
