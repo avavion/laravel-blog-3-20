@@ -14,4 +14,10 @@ class Comment extends Model
         "text",
         "article_id"
     ];
+
+    // hasOne
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id')->first();
+    }
 }

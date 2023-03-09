@@ -21,14 +21,7 @@
                                                 <div class="row">
 
                                                     <div class="col-md-12 col-sm-12 col-lg-12">
-
-                                                        @if ($errors->any())
-                                                            @foreach ($errors->all() as $error)
-                                                                <div class="alert alert-danger" role="alert">
-                                                                    {{ $error }}
-                                                                </div>
-                                                            @endforeach
-                                                        @endif
+                                                        @include('components.alerts.error')
                                                     </div>
 
                                                     {{-- Email --}}

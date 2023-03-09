@@ -19,7 +19,7 @@
                         <a class="nav-link" href="{{ route('about') }}">About Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('blog') }}">Blog Entries</a>
+                        <a class="nav-link" href="{{ route('article.all') }}">Blog Entries</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('contact') }}">Contact Us</a>
@@ -27,25 +27,25 @@
 
                     {{-- Неавторизованный пользователь --}}
                     @guest
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('signin') }}">
-                            Sign In
-                        </a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('signin') }}">
+                                Sign In
+                            </a>
+                        </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('signup') }}">
-                            Sign Up
-                        </a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('signup') }}">
+                                Sign Up
+                            </a>
+                        </li>
                     @endguest
 
                     @auth
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('logout') }}">
-                            Logout
-                        </a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('logout') }}">
+                                Logout
+                            </a>
+                        </li>
                     @endauth
                 </ul>
             </div>

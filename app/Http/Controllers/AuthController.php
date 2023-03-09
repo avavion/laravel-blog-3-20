@@ -20,6 +20,10 @@ class AuthController extends Controller
 
         $validated['password'] = Hash::make($request['password']);
 
+        if ($request->file('photo')) {
+            $validated['image_path'] = $request->file('photo')->store('public/images');
+        }
+
         $user = User::query()->create($validated);
 
         Auth::login($user);

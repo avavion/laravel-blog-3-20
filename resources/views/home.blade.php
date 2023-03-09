@@ -148,8 +148,6 @@
                 <div class="col-lg-8">
                     <div class="all-blog-posts">
                         <div class="row">
-
-
                             @foreach ($articles as $article)
                                 <div class="col-lg-12">
                                     <div class="blog-post">
@@ -193,10 +191,9 @@
                                 </div>
                             @endforeach
 
-
                             <div class="col-lg-12">
                                 <div class="main-button">
-                                    <a href="blog.html">View All Posts</a>
+                                    <a href="{{ route('article.all') }}">View All Posts</a>
                                 </div>
                             </div>
                         </div>
@@ -207,7 +204,7 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="sidebar-item search">
-                                    <form id="search_form" name="gs" method="GET" action="#">
+                                    <form id="search_form" name="gs" method="GET" action="/">
                                         <input type="text" name="q" class="searchText"
                                             placeholder="type to search..." autocomplete="on" />
                                     </form>
